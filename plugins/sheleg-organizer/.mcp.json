@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "sheleg": {
+      "type": "http",
+      "url": "https://sheleg-organizer-api.fly.dev/mcp"
+    }
+  }
+}

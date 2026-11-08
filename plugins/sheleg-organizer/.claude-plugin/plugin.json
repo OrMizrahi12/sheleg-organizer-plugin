@@ -1,0 +1,20 @@
+{
+  "name": "sheleg-organizer",
+  "displayName": "Sheleg Organizer",
+  "version": "1.0.0",
+  "description": "Connects Claude Code to Sheleg Organizer, Sheleg Lavan's shift-scheduling system, and teaches it to work as the signed-in manager: setting up projects, managing workers and accounts, and building and publishing rosters.",
+  "author": {
+    "name": "Sheleg Organizer",
+    "url": "https://sheleg-organizer-web.fly.dev"
+  },
+  "homepage": "https://github.com/OrMizrahi12/sheleg-organizer-plugin#readme",
+  "repository": "https://github.com/OrMizrahi12/sheleg-organizer-plugin",
+  "keywords": [
+    "sheleg-organizer",
+    "scheduling",
+    "shifts",
+    "roster",
+    "security",
+    "mcp"
+  ]
+}

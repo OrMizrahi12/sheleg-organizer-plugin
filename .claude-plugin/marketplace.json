@@ -1,0 +1,15 @@
+{
+  "name": "sheleg-lavan",
+  "description": "The official plugins of Sheleg Organizer, Sheleg Lavan's shift-scheduling system.",
+  "owner": {
+    "name": "Sheleg Organizer"
+  },
+  "plugins": [
+    {
+      "name": "sheleg-organizer",
+      "source": "./plugins/sheleg-organizer",
+      "description": "Connects Claude Code to Sheleg Organizer over MCP and teaches it to work as the signed-in manager: project setup, workers and accounts, rosters.",
+      "category": "productivity"
+    }
+  ]
+}
