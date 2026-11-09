@@ -2,7 +2,7 @@
 
 <!-- Generated from the operations catalog by `pnpm plugin:build` in the system's repository. Do not edit by hand. -->
 
-The server offers 123 tools, one per operation of the system that an agent may run. Changing a password, managing agent connections and registering devices are for people only, so they are not tools. The live tool list and each tool's description and input schema are the source of truth; this list is a map. Descriptions name operations with a dot, such as `projects.getProfile`; its tool is `projects_getProfile`.
+The server offers 124 tools, one per operation of the system that an agent may run. Changing a password, managing agent connections and registering devices are for people only, so they are not tools. The live tool list and each tool's description and input schema are the source of truth; this list is a map. Descriptions name operations with a dot, such as `projects.getProfile`; its tool is `projects_getProfile`.
 
 Each entry says whether the tool reads or writes, its traits, and which grades may run it. A grade reaches only its own scope: a company admin their company, a project manager the projects they run. "Setup" tools change a project's structure: propose the plan and get the user's confirmation first. Workers never use agents.
 
@@ -155,6 +155,10 @@ Each entry says whether the tool reads or writes, its traits, and which grades m
 - **`reminders_list`** (reads). Root admin, company admin (their company), project manager (projects they run). Lists a project's reminder rules: before the availability deadline, and custom scheduled messages.
 - **`reminders_save`** (writes). Root admin, company admin (their company), project manager (projects they run). Creates or updates a reminder rule. before_deadline: minutes before the availability deadline, sent only to workers who have not submitted. custom: a message to a project or sector at a set time, once or repeating daily or weekly at the same local time.
 - **`reminders_remove`** (writes, removes data). Root admin, company admin (their company), project manager (projects they run). Removes one of a project's reminder rules, so its reminders stop going out.
+
+## notifications
+
+- **`notifications_sendTest`** (writes). Root admin, company admin, project manager. Sends the caller a test notification: to their inbox, and by push to every phone where they use the app with notifications allowed. Answers how many such phones there are, so a person can check that pushes reach them.
 
 ## Reports and exports
 
