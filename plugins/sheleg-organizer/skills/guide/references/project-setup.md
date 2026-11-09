@@ -39,6 +39,7 @@ Each step needs the ids the previous one returned.
 6. `tags_create` for the new tags, then `facilities_setRequiredTags` and `positions_setRequiredTags`.
 7. `standards_set` for each position, shift and day type, then `standards_setOverride` for weekday exceptions.
 8. `projects_updateSettings` only for settings the user asked about, such as the availability deadline or the facility coverage order.
+   The availability deadline is a weekday of the week before the roster week and a time, stored as `daysBefore` the week's Sunday: Sunday 7, Monday 6, Tuesday 5, Wednesday 4, Thursday 3, Friday 2, Saturday 1. "Tuesday at 12:00" is `{ daysBefore: 5, time: "12:00" }`. Values 8 to 14 fall two weeks before. Say the day back to the user in words, not as a number.
 
 These are setup changes. When a call returns `needs_acknowledgement` or `blocked`, stop. Tell the user, and continue only as they decide.
 
