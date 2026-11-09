@@ -15,7 +15,7 @@ Each entry says whether the tool reads or writes, its traits, and which grades m
 ## Companies
 
 - **`companies_list`** (reads). Lists every company. Root admin only.
-- **`companies_create`** (writes). Root admin only. Creates a company and its first company admin, whose Israeli mobile number (`admin.phone`, such as 050-1234567) is required like every account's; their email (`admin.email`) is optional but worth asking for. Returns the admin's generated password, shown once, to pass on with their ID number; it is permanent until someone with the right gives another.
+- **`companies_create`** (writes). Root admin only. Creates a company, with or without its first company admin. Leave out `admin` to open the company alone: the root admin manages it until someone is appointed, later, with accounts.create (grade company_admin and this companyId). With `admin`, the admin's Israeli mobile number (`admin.phone`, such as 050-1234567) is required like every account's; their email (`admin.email`) is optional but worth asking for. Returns the companyId and, when an admin was opened, the admin's generated password, shown once, to pass on with their ID number; it is permanent until someone with the right gives another. Without an admin, the admin fields come back null.
 - **`companies_setArchived`** (writes). Root admin only. Archives a company, which stops all of its users, or restores it.
 - **`companies_remove`** (writes, removes data). Root admin only. Permanently removes a company and all of its data. The confirmation must repeat the company name exactly.
 - **`companies_setAgentsEnabled`** (writes). Root admin, company admin (their company). Turns agent use (MCP and the native agent) on or off for a company. Off stops existing connections.
