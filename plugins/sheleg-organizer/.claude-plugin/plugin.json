@@ -1,7 +1,7 @@
 {
   "name": "sheleg-organizer",
   "displayName": "Sheleg Organizer",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Connects Claude Code to Sheleg Organizer, Sheleg Lavan's shift-scheduling system, and teaches it to work as the signed-in manager: setting up projects, managing workers and accounts, and building and publishing rosters. Engine runs are solved on your own computer when it can.",
   "author": {
     "name": "Sheleg Organizer",

@@ -43,7 +43,7 @@ Each entry says whether the tool reads or writes, its traits, and which grades m
 
 ## Audit log
 
-- **`audit_list`** (reads). Root admin, company admin (their company), project manager (projects they run). Reads the audit log in the caller's scope, newest first, filtered by person, agent connection, channel, date range and target. Entries carry the values before and after.
+- **`audit_list`** (reads). Root admin, company admin (their company), project manager (projects they run). Reads the audit log in the caller's scope, newest first, filtered by person, agent connection, channel, date range and target. Each entry says what happened in plain Hebrew: `summary` is the sentence to show or quote, `changes` lists each changed field as label, from and to, `flow` places the action in its process (an engine run, a roster week, a vacation request) and `target_label` names the record. The raw values before and after stay in `before`, `after` and `details` for investigation; never show them to people.
 
 ## Project setup
 
