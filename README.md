@@ -23,6 +23,10 @@ The official plugin that connects Claude Code to **Sheleg Organizer**, Sheleg La
 
 ב־Claude Desktop או ב־claude.ai: ‏Customize › Connectors › Add custom connector, ובשדה הכתובת: ‎`https://sheleg-organizer-api.fly.dev/mcp`‎.
 
+### הרצת המנוע במחשב שלכם
+
+ב־Claude Code, ריצת מנוע לבניית סידור נפתרת במחשב שלכם ולא בשרת: השרת רק מוסר את נתוני הריצה ומקבל בחזרה את התוצאה, וההחלה על הטיוטה עוברת את אותם כללים כמו תמיד. לשם כך צריך את ‎[uv](https://docs.astral.sh/uv/)‎. אם הוא חסר, Claude יציע להתקין אותו במתקין הרשמי. בהרצה הראשונה מורדים Python והמנוע, ולכן היא אורכת יותר. כשהמחשב לא יכול לפתור, Claude מריץ את המנוע בשרת, כך שתמיד מתקבל סידור. במערכת, ליד כל ריצה שנפתרה אצלכם, מופיע "במחשב המנהל". ב־Claude Desktop וב־claude.ai הריצה נפתרת בשרת.
+
 </div>
 
 ## Before you start
@@ -64,8 +68,18 @@ The connection does not expire. Claude Code keeps it in its own credential store
   - It never invents names, ID numbers or phone numbers.
   - It never handles a password you chose.
 - **`/sheleg-organizer:connect`.** It checks the connection and says who Claude acts as, or how to sign in.
+- **Engine runs solved on your computer.** See below.
 
 Try, for example: "Show me the open slots in next week's roster", or "Here is the staffing table of the new campus: set it up as a project".
+
+## Engine runs solve on your computer
+
+In Claude Code, when Claude builds a roster with the engine, the engine runs **on your computer**, not on the system's server. The server only hands out the run's input and takes back the result. Applying the result to the draft passes through the same rules as always, and the system marks the run "במחשב המנהל" (on the manager's computer).
+
+- **What it needs:** [uv](https://docs.astral.sh/uv/), which provides Python and the engine's libraries. If uv is missing, Claude offers to install it with its official installer from astral.sh. The first run downloads Python and the engine, so it takes a minute or two longer; later runs reuse them.
+- **What passes through your computer:** the run's input and result, through short-lived links, and the engine itself, checked against the checksum the server names. They hold ids, hours and rules, not names. The input and result are deleted from your computer when the run ends. The engine is kept in your cache folder and replaced whenever the system's engine changes.
+- **When it falls back to the server:** when uv cannot be installed, the download fails, the engine fails or takes too long, or the server refuses the result. Claude says so in one line and runs the engine on the server instead, so you always get a roster. A run left waiting for your computer fails by itself after 20 minutes and never holds the roster.
+- **Claude Desktop and claude.ai** cannot run commands on your computer, so there the engine always runs on the server, as it does in the system's screens.
 
 ## Narrow, revoke or remove
 
@@ -113,6 +127,7 @@ A release can move the server to a new address, for example when the system move
 | The server was connected, and now every call fails | The connection was revoked on the web page. In `/mcp`, use **Clear authentication**, then **Authenticate**. |
 | Two Sheleg Organizer servers appear in `/mcp` | An older manual registration is still there. Remove it with `claude mcp remove sheleg-organizer -s user`. |
 | The tools are missing after an update | Run `/reload-plugins`, or start a new session. |
+| Claude says the engine could not run on your computer | It ran on the server instead, so nothing is lost. To solve locally next time, check that `uv --version` works in a terminal. Behind a proxy, uv needs access to `pypi.org`, `files.pythonhosted.org` and `github.com`. |
 
 ## About this repository
 

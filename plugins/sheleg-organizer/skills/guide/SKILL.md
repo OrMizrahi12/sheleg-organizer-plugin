@@ -83,6 +83,28 @@ Managers often say "עמדה" for a facility, or for a post-level facility. When
 
 Writes to a slot carry the slot's version, which `roster_getWeek` returns. Read the week again before you edit it, if time has passed.
 
+## Engine runs solve on this computer
+
+You run in Claude Code, which runs commands on the user's computer, so an engine run is solved **here**, not on the system's server. The server only hands out the input and takes back the result; applying it passes through the same rules as always. Only when this computer cannot solve it do you fall back to the server.
+
+1. **uv.** Run `uv --version`. If uv is missing, install it once with the official installer from astral.sh, then check again:
+   - macOS or Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+   - Windows (PowerShell): `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+
+   If it cannot be installed, solve on the server (step 5).
+2. **Start the run for this computer:** `engine_run` with `solveOn: "caller"`. Handle its warnings to acknowledge as usual. It returns `runId` and `local.ticketUrl`, a short-lived link for the runner only. Never open, print or summarise the link's content.
+3. **Solve.** Run this command, with a timeout of 10 minutes. The first run downloads Python and the engine, so it takes longer:
+
+   ```sh
+   uv run --script "${CLAUDE_SKILL_DIR}/scripts/solve_locally.py" --ticket "<local.ticketUrl>"
+   ```
+
+   It prints one line of JSON. Do not read the input or result files yourself: the runner downloads, solves and uploads them, and deletes them from this computer.
+4. **Hand it in.** On `"ok": true`, call `engine_submitResult` with the `runId`. Then continue as with any run: `engine_result`, a summary for the user, and `engine_apply` after their yes.
+5. **Fall back to the server** when any step fails: uv is missing, `engine_run` is blocked with `local_solve_unavailable`, the runner prints `"ok": false` or times out, or `engine_submitResult` returns `result_invalid` or `run_not_waiting`. Tell the user in one line that this computer could not solve it and why, then call `engine_run` with `solveOn: "server"`. It replaces your run that was waiting for this computer. Poll `engine_runs` until it finishes.
+
+A run left waiting for this computer fails by itself after 20 minutes, so it never holds the roster. The system shows where each run was solved.
+
 ## Workflows
 
 - **Setting up a project** from words, files or images: [references/project-setup.md](references/project-setup.md).
