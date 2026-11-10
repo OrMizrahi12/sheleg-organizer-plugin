@@ -61,13 +61,13 @@ A user opens accounts and gives grades up to and including their own, never abov
 | Assignment | שיבוץ | A worker placed in a slot. |
 | Gap / Declared shortage | חוסר / חוסר מסומן | A slot the standard calls for that has no worker. A declared shortage stays empty on purpose and shows red. |
 | Double shift | כפולה | One worker on consecutive shifts at one facility. |
-| Reserve | רזרבה | Available workers kept aside for a date and shift. |
 | Availability | זמינות | The shifts a worker offers for a week. Not "constraints". |
 | Position access | הרשאת תפקיד | A worker's relation to a position: fixed, preferred, allowed, less_wanted, consent_only or forbidden. |
 | Worker profile | פרופיל עובד | Free text managers write about a worker. It is the main source for how they are scheduled, and the system derives settings from it. |
 | Project profile | פרופיל פרויקט | Free text about a project's standing judgment. |
 | Engine | מנוע | Proposes a draft from the standards, availability, access and parameters. It keeps every hard rule. |
-| Loan | תגבור | A worker placed outside their home sector. |
+| Loan | תגבור | A worker placed outside their home sector: the receiving side of a reinforcement. |
+| Reinforcement facility | תגבור | Built into every sector, always last: one position "מתגבר" with an open slot a day for each shift, where a manager records workers sent to another project. Open slots are never gaps and the engine never fills them. It cannot be renamed, archived or given standards. |
 
 Managers often say "עמדה" for a facility, or for a post-level facility. When it is unclear whether they mean a facility or a position, ask.
 
