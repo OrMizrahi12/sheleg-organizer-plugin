@@ -30,9 +30,13 @@ Before you place a worker, read their profile (`workers_getProfile`) when the us
 
 After publishing, `roster_publications` lists the versions workers were told, and `roster_compareDrafts` compares the current state with a version.
 
+## Unpublish
+
+`roster_unpublish` takes a published roster back to a draft ("ביטול פרסום"), for instance to rework it quietly. Nobody is notified. Workers keep reading the last version they were told until the roster is published again, and edits to the draft reach nobody. Publishing it again with `roster_publish` sends each worker whose shifts changed one notice listing all the changes; nobody else is told. `roster_publications` shows the withdrawn version with `withdrawn_at`. Ask the user before you unpublish: "Take the roster of <sector> for the week of <date> back to a draft? Workers keep the last published version and are not told."
+
 ## Deleting
 
-`roster_delete` deletes a week with all its slots. A published roster asks first, since its workers were told, and they are told it was cancelled. A published week that has started cannot be deleted. Always ask the user before you delete.
+`roster_delete` deletes a week with all its slots. A published roster, or one taken back to a draft, asks first, since its workers were told, and they are told it was cancelled. A published week that has started cannot be deleted. Always ask the user before you delete.
 
 ## Reports and exports
 
