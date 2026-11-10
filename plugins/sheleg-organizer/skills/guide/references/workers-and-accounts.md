@@ -8,17 +8,17 @@
 |---|---|
 | `grade` | `worker`, `project_manager` or `company_admin`: at most the caller's own grade (`me_get`). |
 | `fullName` | As the user gave it. Never shorten or "correct" a name. |
-| `idNumber` | An Israeli ID number: nine digits, the last a check digit. Shorter numbers are padded with zeros at the front. |
+| `idNumber` | The person's ID number, their login name: digits only, as given, up to 20 digits. No check digit is required. A number of up to nine digits is padded with zeros at the front, so a number typed with or without its leading zeros is the same person. |
 | `phone` | An Israeli mobile number, ten digits starting with 05, such as 050-1234567. No other active person may have it. Landlines and foreign numbers are refused. |
 | `homeSectorId` | Required for a worker. |
 | `projectIds` | Required for a project manager: the projects they run. |
 | `notes` | Optional. Becomes the first text of the worker profile. |
 
-**Checking an ID number.** Pad it to nine digits with zeros at the front. Multiply the digits by 1, 2, 1, 2, 1, 2, 1, 2, 1, from the left. Where a product is above 9, subtract 9. The number is valid when the sum divides by 10. For example, 123456782 gives 1+4+3+8+5+3+7+7+2 = 40, so it is valid, and 123456789 is not. When a number fails, ask the user to check it. Never change a digit yourself.
+**Checking an ID number.** Only check that it is digits. Accept it as the user gives it, whatever its check digit or length; the system takes any real number. Never change a digit yourself.
 
 **Many accounts at once**, such as a worker list from a file:
 
-1. Read the whole list. Check every ID number and phone, and match every home sector to a sector that exists (`config_get`).
+1. Read the whole list. Check that every ID number is digits and every phone a mobile number, and match every home sector to a sector that exists (`config_get`).
 2. Show one table: who will be opened, with which grade and sector. List separately the rows with a problem: a bad ID number, a missing or non-mobile phone, a sector that does not exist, or a duplicate within the list.
 3. Wait for the user's confirmation, then open the accounts one by one. When a call is `blocked`, such as a phone another person has, record it and go on.
 4. Report who was opened and who was not, and why.
