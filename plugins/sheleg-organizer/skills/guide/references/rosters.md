@@ -30,6 +30,10 @@ Before you place a worker, read their profile (`workers_getProfile`) when the us
 
 After publishing, `roster_publications` lists the versions workers were told, and `roster_compareDrafts` compares the current state with a version.
 
+## Delete a staffing row of the week
+
+`roster_removeSlots` removes several slots of one week at once, all or none: send every slot of the row (one position in one shift) with its version. It returns `needs_acknowledgement` naming the workers it would take out and their days, and for slots of the minimum; acknowledge only after the user says yes. Only this week changes: the staffing standard stays, so the next weeks still get the row. The slots of "תגבור" stay.
+
 ## Unpublish
 
 `roster_unpublish` takes a published roster back to a draft ("ביטול פרסום"), for instance to rework it quietly. Nobody is notified. Workers keep reading the last version they were told until the roster is published again, and edits to the draft reach nobody. Publishing it again with `roster_publish` sends each worker whose shifts changed one notice listing all the changes; nobody else is told. `roster_publications` shows the withdrawn version with `withdrawn_at`. Ask the user before you unpublish: "Take the roster of <sector> for the week of <date> back to a draft? Workers keep the last published version and are not told."
