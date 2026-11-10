@@ -44,4 +44,4 @@ A worker profile is the managers' free text about a worker: what they can and ca
 ## Availability and vacations
 
 - `availability_get` and `availability_submit` read and submit a worker's offered shifts for a week. A manager may submit after the deadline, and the edit is logged.
-- `vacations_request`, `vacations_decide` and `vacations_cancel` handle vacations. Approving releases the worker's shifts on those days, and it asks first.
+- `vacations_request`, `vacations_decide`, `vacations_reopen` and `vacations_cancel` handle vacations. Approving releases the worker's shifts on those days, and it asks first. `vacations_reopen` returns a decided vacation to waiting; the shifts approving released are not given back, so say so before running it.

@@ -2,7 +2,7 @@
 
 <!-- Generated from the operations catalog by `pnpm plugin:build` in the system's repository. Do not edit by hand. -->
 
-The server offers 125 tools, one per operation of the system that an agent may run. Changing a password, managing agent connections and registering devices are for people only, so they are not tools. The live tool list and each tool's description and input schema are the source of truth; this list is a map. Descriptions name operations with a dot, such as `projects.getProfile`; its tool is `projects_getProfile`.
+The server offers 126 tools, one per operation of the system that an agent may run. Changing a password, managing agent connections and registering devices are for people only, so they are not tools. The live tool list and each tool's description and input schema are the source of truth; this list is a map. Descriptions name operations with a dot, such as `projects.getProfile`; its tool is `projects_getProfile`.
 
 Each entry says whether the tool reads or writes, its traits, and which grades may run it. A grade reaches only its own scope: a company admin their company, a project manager the projects they run. "Setup" tools change a project's structure: propose the plan and get the user's confirmation first. Workers never use agents.
 
@@ -145,6 +145,7 @@ Each entry says whether the tool reads or writes, its traits, and which grades m
 - **`vacations_request`** (writes). Root admin, company admin (their company), project manager (projects they run). Requests a vacation for a date range. The worker's project managers are notified.
 - **`vacations_list`** (reads). Root admin, company admin (their company), project manager (projects they run). Lists vacations: the caller's own, one worker's, or a project's, optionally by status.
 - **`vacations_decide`** (writes). Root admin, company admin (their company), project manager (projects they run). Approves or denies a vacation request, or reverses a decision. The worker is notified. An approved vacation leaves the engine's pool. Approving releases the shifts the worker holds on those days that have not started, after needs_acknowledgement (vacation_releases_shifts). A cancelled request cannot be decided.
+- **`vacations_reopen`** (writes). Root admin, company admin (their company), project manager (projects they run). Returns an approved or denied vacation to waiting (requested), as if it had never been decided, so it can be decided again. The worker is notified. Shifts that approving released are not given back, since someone else may hold them now, and nothing new is released: shifts are released again only if the vacation is approved again. A waiting vacation does not leave the engine's pool. A cancelled or still waiting request cannot be reopened.
 - **`vacations_cancel`** (writes, removes data). Root admin, company admin (their company), project manager (projects they run). Cancels a vacation request that has not been decided.
 
 ## Messages and announcements
