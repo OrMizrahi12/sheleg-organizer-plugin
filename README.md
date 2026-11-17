@@ -16,7 +16,7 @@ The official plugin that connects Claude Code to **Sheleg Organizer**, Sheleg La
    ```
 
 2. פותחים את Claude Code, מקלידים ‎`/plugin`‎, נכנסים ל־**Marketplaces**, בוחרים ‎`sheleg-lavan`‎ ולוחצים **Enable auto-update**. כך התוסף מתעדכן לבד.
-3. מקלידים ‎`/mcp`‎, בוחרים ‎`plugin:sheleg-organizer:sheleg`‎ ולוחצים **Authenticate**. נפתח בדפדפן דף הכניסה של Sheleg Organizer: נכנסים בתעודת זהות ובסיסמה.
+3. מקלידים ‎`/mcp`‎, בוחרים ‎`plugin:sheleg-organizer:sheleg`‎ ולוחצים **Authenticate**. נפתח בדפדפן דף הכניסה של Sheleg Organizer. בודקים שכתוב בו שהחיבור יישלח אל ‎`localhost`‎, עם סימן וי ירוק. אם מופיעה כתובת אחרת עם אזהרה צהובה, עוצרים. אחר כך נכנסים בתעודת זהות ובסיסמה.
 4. בודקים: ‎`/sheleg-organizer:connect`‎. Claude יגיד בשם מי הוא פועל.
 
 הסוכן פועל בדיוק בהרשאות שלכם. כל פעולה שלו נרשמת ביומן הפעולות. את החיבור מבטלים בכל רגע במערכת, בדף "סוכנים › חיבורי סוכן", בכפתור "ביטול חיבור".
@@ -52,7 +52,7 @@ The first adds this marketplace, named `sheleg-lavan`. The second installs the p
 
 1. Start Claude Code and type `/mcp`.
 2. Choose `plugin:sheleg-organizer:sheleg`, which shows **Needs authentication**, and press **Authenticate**.
-3. Your browser opens the system's page "חיבור סוכן לחשבון שלך". Enter your ID number and password there, never in the chat.
+3. Your browser opens the system's page "חיבור סוכן לחשבון שלך". Check where it says the connection goes: for Claude Code it is `localhost`, with a green check. If it shows another address with a yellow warning, stop. Then enter your ID number and password there, never in the chat.
    - Leave "קריאה בלבד" (read only), "ללא פרסום" (no publishing) and "ללא מחיקה" (no deletion) unticked for full use, or tick them to narrow this connection.
    - If you manage more than one project, a second page asks which projects the agent may reach.
 4. The browser returns to Claude Code with "Authentication successful". `/mcp` now shows the server as connected.

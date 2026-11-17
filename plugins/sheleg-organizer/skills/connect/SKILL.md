@@ -16,7 +16,7 @@ Answer in the user's language: Hebrew if they write Hebrew.
 3. **If the tool is missing, or the call fails because the server needs authentication**, tell the user these steps:
    1. Type `/mcp`.
    2. Choose `plugin:sheleg-organizer:sheleg` and press **Authenticate**.
-   3. The browser opens the page "חיבור סוכן לחשבון שלך". Enter your ID number and password there, never in this chat. Leave the narrowing boxes unticked for full use, or tick them to narrow this connection.
+   3. The browser opens the page "חיבור סוכן לחשבון שלך". Check that it says the connection goes to `localhost`, with a green check; if it shows another address with a yellow warning, stop. Enter your ID number and password there, never in this chat. Leave the narrowing boxes unticked for full use, or tick them to narrow this connection.
    4. If you manage more than one project, choose which projects the agent may reach.
    5. Return here and run `/sheleg-organizer:connect` again.
 
